@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npx hardhat node",
-    "deploy": "npx hardhat run scripts/testScript.ts",
+    "deploy": "npx hardhat run scripts/deploy.ts --network localhost",
+    "compile": "npx hardhat compile",
+    "recompile": "npx hardhat clean && npm run compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vitaly Sane",
