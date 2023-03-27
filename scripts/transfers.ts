@@ -10,13 +10,13 @@ async function currentBalance(address: string, msg = '') {
 
 async function main() {
   const allSigners = await ethers.getSigners();
-  const [signer1, singer2] = allSigners;
+  const [singer1, singer2] = allSigners;
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
   const transfersContract = new ethers.Contract(
     contractAddress,
     TransfersArtifact.abi,
-    signer1
+    singer1
   )
 
   // const tx = {
@@ -27,14 +27,20 @@ async function main() {
   // const txSend = await singer2.sendTransaction(tx);
   // await txSend.wait();
 
-  // await currentBalance(contractAddress, 'Contract balance: ');
-  // await currentBalance(singer2.address, 'Singer 2 balance: ');
+  // const result = await transfersContract.getTransfer(0);
+  // console.log(result);
 
-  const result = await transfersContract.getTransfer(0);
-  console.log(result);
+  // const result = await transfersContract.connect(singer2).withdrawTo(singer2.address);
+  // console.log(result);
+
+  // const result = await transfersContract.withdrawTo(singer2.address);
+  // console.log(result);
+
+  await currentBalance(contractAddress, 'Contract balance: ');
+  await currentBalance(singer1.address, 'Singer 1 balance: ');
+  await currentBalance(singer2.address, 'Singer 2 balance: ');
 }
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;

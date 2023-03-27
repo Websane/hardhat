@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npx hardhat node",
-    "deploy": "npx hardhat run scripts/deploy.ts --network localhost",
-    "transfer": "npx hardhat run scripts/transfers.ts --network localhost",
     "compile": "npx hardhat compile",
     "recompile": "npx hardhat clean && npm run compile",
+    "deploy": "npx hardhat run scripts/deploy.ts --network localhost",
+    "transfer": "npx hardhat run scripts/transfers.ts --network localhost",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vitaly Sane",
