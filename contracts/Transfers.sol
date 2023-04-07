@@ -44,5 +44,4 @@ contract Transfers {
     transfers.push(newTransfer);
     currentTransfers++;
   }
-
 }

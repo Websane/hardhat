@@ -10,13 +10,13 @@ async function currentBalance(address: string, msg = '') {
 
 async function main() {
   const allSigners = await ethers.getSigners();
-  const [singer1, singer2] = allSigners;
+  const [signer1, signer2] = allSigners;
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
   const transfersContract = new ethers.Contract(
     contractAddress,
     TransfersArtifact.abi,
-    singer1
+    signer1
   )
 
   // const tx = {
@@ -24,21 +24,21 @@ async function main() {
   //   value: ethers.utils.parseEther("1"),
   // };
 
-  // const txSend = await singer2.sendTransaction(tx);
+  // const txSend = await signer2.sendTransaction(tx);
   // await txSend.wait();
 
   // const result = await transfersContract.getTransfer(0);
   // console.log(result);
 
-  // const result = await transfersContract.connect(singer2).withdrawTo(singer2.address);
+  // const result = await transfersContract.connect(signer2).withdrawTo(signer2.address);
   // console.log(result);
 
-  // const result = await transfersContract.withdrawTo(singer2.address);
-  // console.log(result);
+  const result = await transfersContract.withdrawTo(signer2.address);
+  console.log(result);
 
   await currentBalance(contractAddress, 'Contract balance: ');
-  await currentBalance(singer1.address, 'Singer 1 balance: ');
-  await currentBalance(singer2.address, 'Singer 2 balance: ');
+  await currentBalance(signer1.address, 'Signer 1 balance: ');
+  await currentBalance(signer2.address, 'Signer 2 balance: ');
 }
 
 main().catch((error) => {
